@@ -15,12 +15,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Components\GitHub\FetchTotals::class,
         \App\Console\Components\InternetConnection\SendHeartbeat::class,
-        \App\Console\Components\Npm\FetchTotals::class,
         \App\Console\Components\Music\FetchCurrentTrack::class,
         \App\Console\Components\Packagist\FetchTotals::class,
-        \App\Console\Components\Twitter\ListenForMentions::class,
-        \App\Console\Components\Twitter\ListenForQuotes::class,
-        \App\Console\Components\Twitter\SendFakeTweet::class,
+        \App\Console\Components\OhDear\FakeDowntime::class,
         UpdateDashboard::class,
     ];
 
@@ -30,6 +27,5 @@ class Kernel extends ConsoleKernel
         $schedule->command('dashboard:send-heartbeat')->everyMinute();
         $schedule->command('dashboard:fetch-github-totals')->everyThirtyMinutes();
         $schedule->command('dashboard:fetch-packagist-totals')->hourly();
-        //$schedule->command('dashboard:fetch-npm-totals')->hourly();
     }
 }
