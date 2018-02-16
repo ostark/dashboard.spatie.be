@@ -17,6 +17,8 @@ class DashboardController extends Controller
             'initialTweets' => TweetHistory::all(),
 
             'usingNodeServer' => usingNodeServer(),
+
+            'authEndpoint' => 'http://localhost:8000/api/user/login'
         ]);
     }
 }

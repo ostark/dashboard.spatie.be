@@ -37,6 +37,8 @@ new Vue({
             broadcaster: 'pusher',
             key: window.dashboard.pusherKey,
             cluster: window.dashboard.pusherCluster,
+            authEndpoint: window.dashboard.authEndpoint,
+
         };
 
         if (window.dashboard.usingNodeServer) {
