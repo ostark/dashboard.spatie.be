@@ -13,7 +13,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Components\Calendar\FetchCalendarEvents::class,
         \App\Console\Components\GitHub\FetchTotals::class,
         \App\Console\Components\InternetConnection\SendHeartbeat::class,
         \App\Console\Components\Npm\FetchTotals::class,
@@ -27,7 +26,6 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('dashboard:fetch-calendar-events')->everyMinute();
         $schedule->command('dashboard:fetch-current-track')->everyMinute();
         $schedule->command('dashboard:send-heartbeat')->everyMinute();
         $schedule->command('dashboard:fetch-github-totals')->everyThirtyMinutes();
