@@ -24,11 +24,11 @@ class FetchTotals extends Command
                     'stars' => $repos->sum('stargazers_count'),
                     'issues' => $repos->sum('open_issues'),
                     'pullRequests' => $repos->sum(function ($repo) use ($gitHub, $userName) {
-                        return count($gitHub->fetchPullRequests($userName, $repo['name']));
+                        return ($repo['fork']) ? 0 : count($gitHub->fetchPullRequests($userName, $repo['name']));
                     }),
-                    'contributors' => $repos->sum(function ($repo) use ($gitHub, $userName) {
-                        return count($gitHub->fetchContributors($userName, $repo['name']));
-                    }),
+                    'contributors' => $repos->flatMap(function ($repo) use ($gitHub, $userName) {
+                        return ($repo['fork']) ? [] : $gitHub->fetchContributors($userName, $repo['name'])->pluck('login')->toArray();
+                    })->unique()->count(),
                     'numberOfRepos' => $repos->count(),
                 ];
             });

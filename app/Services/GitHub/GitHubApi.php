@@ -24,7 +24,7 @@ class GitHubApi
 
     public function fetchContributors(string $userName, string $repoName): Collection
     {
-        return collect($this->fetchAllResults('repo', 'statistics', [$userName, $repoName]));
+        return collect($this->fetchAllResults('repo', 'contributors', [$userName, $repoName]));
     }
 
     public function fetchPullRequests(string $userName, string $repoName): Collection
